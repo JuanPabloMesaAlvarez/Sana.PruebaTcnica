@@ -1,0 +1,40 @@
+﻿@model Sanna.Domain.Products.Product
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div>
+            <h4>Product</h4>
+            <div>
+                @Html.LabelFor(model => model.Title)
+                <div>
+                    @Html.EditorFor(model => model.Title)
+                </div>
+            </div>
+            <div>
+                @Html.LabelFor(model => model.Price)
+                <div>
+                    @Html.EditorFor(model => model.Price)
+                </div>
+            </div>
+            <div>
+                <input type="submit" value="Save" />
+            </div>
+            <div>
+                @Html.ActionLink("Cancel", "Index")
+            </div>
+        </div>
+        }
+    </div>
+</body>
+</html>

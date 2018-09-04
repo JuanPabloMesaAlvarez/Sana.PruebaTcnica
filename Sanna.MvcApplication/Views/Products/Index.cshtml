@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Sanna.Domain.Products.Product>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Product List</title>
+</head>
+<body>
+    @{
+        @Html.ActionLink("Change storage mode: ", "ChangeMode", new { memory = !bool.Parse(TempData["InMemory"].ToString()) })
+        <br />
+        var text = "Persistent in Database";
+        if (bool.Parse(TempData["InMemory"].ToString()))
+        {
+            text = "In Memory";
+        }
+
+        @Html.Label(text, new { Style = "color: red; font-size: 22px" });
+    }
+    <div>
+        <br />
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <br />
+    <div>
+        @Html.ActionLink("Create Product", "Create", new { memory = Request.Params["memory"] })
+    </div>
+</body>
+</html>
